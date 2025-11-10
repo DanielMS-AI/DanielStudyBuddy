@@ -1,0 +1,164 @@
+html {
+  font-size: 18px; 
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+body, html {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #000;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('../images/landingimage.jpg') center/cover no-repeat fixed;
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+
+.button-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 840px;              
+  margin: 20px auto 40px;       
+  border: 2px solid #106b41; 
+  border-radius: 8px;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.button-bar .btn {
+  background: none;
+  border: none;
+  color: #106b41;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  user-select: none;
+  text-decoration: none;  
+  flex: 1;
+  text-align: center;
+}
+.button-bar .btn.left {
+  text-align: left;
+}
+
+.button-bar .btn.middle {
+  text-align: center;
+}
+
+.button-bar .btn.right {
+  text-align: right;
+}
+
+.button-bar .btn:hover {
+  text-decoration: underline;
+}
+
+
+.header{
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+  padding-top: 20px;
+
+}
+
+.start{
+  display: flex;
+  justify-content: center;    
+  align-items: flex-start;  
+  margin: 30px auto;
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  background-color: #106b41;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+
+.descriptions {
+  display: flex;
+  flex-direction: row;       
+  gap: 20px;                
+  justify-content: center;    
+  align-items: flex-start;   
+  margin-top: 40px;     
+  ;
+}
+
+.description-box {
+  max-width: 350px;  
+  background: #f9f9f9;
+  border: 1.5px solid #aaa;
+  border-radius: 8px;
+  padding: 14px 16px;
+  min-height: 70px; 
+  text-align: center;
+  font-size: 1rem;
+  font-family: inherit;
+  box-shadow: 1px 2px 6px rgba(0,0,0,0.04);
+  resize: none;
+  overflow-y: auto;
+}
+
+.howto{
+    display: flex;
+  flex-direction: column;       
+  gap: 20px;                
+  justify-content: center;    
+  align-items: center;   
+  margin-top: 100px;     
+  margin-bottom: 100px;
+}
+.howtobox {
+  max-width: 700px;  
+  background: #f9f9f9;
+  border: 1.5px solid #aaa;
+  border-radius: 8px;
+  padding: 14px 16px;
+  min-height: 70px; 
+  text-align: center;
+  font-size: 1rem;
+  font-family: inherit;
+  box-shadow: 1px 2px 6px rgba(0,0,0,0.04);
+  /* Makes it look more like a textarea */
+  resize: none;
+  overflow-y: auto;
+}
+.howtoimg{
+  width: 60vw;
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+button:active {
+  transform: scale(0.96);
+  background-color: #0e5734; /* Slightly darker */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12) inset;
+}

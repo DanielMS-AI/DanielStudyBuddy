@@ -42,8 +42,8 @@
         </form>
         <form action="../Quiz/quiz.html">
             <button type="submit" class="btn">Quiz</button>
+        </form>
     </div>
 </div>
-
 </body>
 </html>

@@ -16,14 +16,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quiz</title>
-    <!--<link rel="stylesheet" href="/quiz.css"> -->
+    <link rel="stylesheet" href="/quiz.css">
 </head>
 
 <body>
 <div class="nav-bar">
     <a href="/allnotes" class="btn left">View All Notes</a>
     <a href="/" class="btn middle">Home</a>
-    <a href="#" class="btn right">Log Out</a>
+    <a href="/login" class="btn right">Log Out</a>
 </div>
 
 <div class="quiz-container">
@@ -38,15 +38,14 @@
     <div  class="quiz-box">
         <div id="question-text">${questionText}</div>
 
+        <form method="post" action="/quiz/answer">
         <div class="options">
-
-            <button class="option-btn" onclick="selectOption(0)">control what enters and leaves the cell</button>
-            <button class="option-btn" onclick="selectOption(1)">produce energy in the form of ATP</button>
-            <button class="option-btn" onclick="selectOption(2)">store genetic information</button>
-            <button class="option-btn" onclick="selectOption(3)">synthesize proteins</button>
+            @for (var o : options.size())
+                <button class="option-btn" onclick="selectOption(0)">options.get(o)</button>
+            @endfor
         </div>
+        </form>
     </div>
-</div>
 
 </body>
 </html>

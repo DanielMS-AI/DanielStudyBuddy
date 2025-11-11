@@ -21,31 +21,8 @@ public class IndexController {
 /*
     @RequestMapping("/")
     public String landing() {
-        return "landing";
-    }
-*/
-
-    @GetMapping("/quiz/{number}")
-    public String Quiz(@PathVariable("number") int counter, Model model){
-
-        List <Quiz> quizList = studystorage.getQuizzes();
-        Quiz currentQuiz = quizList.get(counter-1);
-
-        if (counter < 1 || counter > quizList.size()) {
-            return "redirect:/quizanswers";
-        }
-
-        List<String> options = new ArrayList<>(currentQuiz.getResponses());
-        options.add(currentQuiz.getAnswer());
-        Collections.shuffle(options);
-
-        model.addAttribute("questionNumber", counter);
-        model.addAttribute("questionText", currentQuiz.getQuestion());
-        model.addAttribute("options", options);
-        model.addAttribute("answer", currentQuiz.getAnswer());
-        model.addAttribute("quizTitle", "Biology"); //hardcoded for now will adjust
-
         return "quiz";
     }
+*/
 
 }

@@ -1,12 +1,6 @@
 
 @import edu.csula.cs3220stu03.studybuddy.models.Quiz
-@import java.util.List
 
-@param Integer questionNumber
-@param String questionText
-@param List<String> options
-@param String answer
-@param String quizTitle
 
 <!doctype html>
 <html lang="en">
@@ -18,34 +12,34 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="/quiz.css">
 </head>
-
 <body>
 <div class="nav-bar">
-    <a href="/allnotes" class="btn left">View All Notes</a>
-    <a href="/" class="btn middle">Home</a>
-    <a href="/login" class="btn right">Log Out</a>
+    <a href="../All Notes/allnotes.html" class="btn left">View All Notes</a>
+    <a href="../Upload Page/index.html" class="btn middle">Home</a>
+    <a href="../Login Page/index.html" class="btn right">Log Out</a>
 </div>
 
 <div class="quiz-container">
-    <h1>Quiz on: ${quizTitle}</h1>
+    <h1>Quiz on: Biology</h1>
 
     <div class="bar">
-        <div class="middle">Question ${questionNumber}/10</div>
+        <div class="middle">Question 1/10</div>
         <a href="#" class="btn right">Quit</a>
     </div>
 
 
     <div  class="quiz-box">
-        <div id="question-text">${questionText}</div>
+        <div id="question-text">The mitochondria is used to?</div>
 
-        <form method="post" action="/quiz/answer">
         <div class="options">
-            @for (var o : options.size())
-                <button class="option-btn" onclick="selectOption(0)">options.get(o)</button>
-            @endfor
+
+            <button class="option-btn" onclick="selectOption(0)">control what enters and leaves the cell</button>
+            <button class="option-btn" onclick="selectOption(1)">produce energy in the form of ATP</button>
+            <button class="option-btn" onclick="selectOption(2)">store genetic information</button>
+            <button class="option-btn" onclick="selectOption(3)">synthesize proteins</button>
         </div>
-        </form>
     </div>
+</div>
 
 </body>
 </html>

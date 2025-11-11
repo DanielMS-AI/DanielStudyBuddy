@@ -4,8 +4,6 @@ import edu.csula.cs3220stu03.studybuddy.models.Quiz;
 import edu.csula .cs3220stu03.studybuddy.storage.Studystorage;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.messages.AssistantMessage;
-import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -20,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -31,7 +28,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
-public class AIChat {
+public class AIController {
 
     private Studystorage studystorage;
 
@@ -40,7 +37,7 @@ public class AIChat {
     private static final ObjectMapper MAPPER = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    public AIChat(ChatClient.Builder chatClientBuilder,Studystorage studystorage) {
+    public AIController(ChatClient.Builder chatClientBuilder, Studystorage studystorage) {
         this.chatClient = chatClientBuilder.build();
         this.studystorage = studystorage;
     }

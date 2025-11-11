@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.ArrayList;
 @Component
-public class studyStorage {
+public class StudyStorage {
 
     private final List<Flashcards> flashcards;
     private final List<Quiz> quiz;
 
-    public studyStorage() {
+    public StudyStorage() {
         //for testing hardcoding some questions and flashcards
         flashcards = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class studyStorage {
     public List<Flashcards> getFlashcards() {
         return flashcards;
     }
-    public List<Quiz> getQuiz() {
+    public List<Quiz> getQuizzes() {
         return quiz;
     }
     public Flashcards getFlashcard(Integer flashcardID) {

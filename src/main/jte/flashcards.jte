@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,6 +19,7 @@
 
 <div class="full-flashcard-box">
     <h2>Flashcards</h2>
+    <h2></h2>
 
     <div class="flashcard-box">
 

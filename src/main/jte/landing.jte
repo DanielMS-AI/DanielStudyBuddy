@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="button-bar">
-    <a href="../login.jte" class="btn right">Log in</a>
+    <a href="../login" class="btn right">Log in</a>
 </div>
 
 <div class="header">

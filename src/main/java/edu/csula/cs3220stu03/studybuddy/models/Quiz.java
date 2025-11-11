@@ -2,12 +2,17 @@ package edu.csula.cs3220stu03.studybuddy.models;
 
 import java.util.List;
 
+
 public class Quiz {
-    private static Integer nextId = 1;
-    private Integer quizID;
-    private String question;
-    private String answer;
-    private List<String> responses;
+    public static Integer nextId = 1;
+    public Integer quizID;
+    public String question;
+    public String answer;
+    public List<String> responses;
+
+    public Quiz() {this.quizID = nextId++; }
+
+
     public Quiz(String question, String answer,  List<String> responses) {
         this.quizID = nextId++;
         this.question = question;
@@ -40,3 +45,4 @@ public class Quiz {
     }
 
 }
+

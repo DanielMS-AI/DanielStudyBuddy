@@ -1,16 +1,21 @@
 package edu.csula.cs3220stu03.studybuddy.models;
 
-public class Flashcards {
-    private static Integer nextId = 1;
-    private Integer flashcardID;
-    private static String question;
-    private static String answer;
 
-    public Flashcards(String question, String answer) {
+
+public class Flashcard {
+    public static Integer nextId = 1;
+    public Integer flashcardID;
+    public String question;
+    public String answer;
+
+    public Flashcard() { }
+
+    public Flashcard(String question, String answer) {
         this.flashcardID = nextId++;
         this.question = question;
         this.answer = answer;
     }
+
     public Integer getFlashcardID() {
         return flashcardID;
     }

@@ -1,28 +1,22 @@
 package edu.csula.cs3220stu03.studybuddy;
 
-import edu.csula.cs3220stu03.studybuddy.models.Quiz;
-import edu.csula.cs3220stu03.studybuddy.storage.StudyStorage;
+import edu.csula.cs3220stu03.studybuddy.storage.Studystorage;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
 
 @Controller
 public class IndexController {
-    private StudyStorage studystorage;
+    private Studystorage studystorage;
 
-    public IndexController(StudyStorage studystorage) {
+    public IndexController(Studystorage studystorage) {
         this.studystorage = studystorage;
     }
 
-/*
+
     @RequestMapping("/")
     public String landing() {
-        return "quiz";
+        return "upload";
     }
-*/
+
 
 }

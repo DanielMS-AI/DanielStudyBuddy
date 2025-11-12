@@ -24,7 +24,7 @@
             <th>File Name</th>
             <th>Flashcards</th>
             <th>Quizzes</th>
-            <th>View</th>
+            <th>view</th>
         </tr>
 
         @for(var set : studySets)
@@ -36,9 +36,7 @@
                     @endfor
                 </td>
                 <td>${set.getQuizzes().size()}</td>
-                <td>
-                    <a href="/studysets/${set.getId()}">Open</a>
-                </td>
+                <td><a href="/quiz/${set.getId()}/1">Start Quiz</a></td>
             </tr>
         @endfor
     </table>

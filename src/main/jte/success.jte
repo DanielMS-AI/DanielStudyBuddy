@@ -8,6 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-<h1>hi</h1>
+success
+<br>
+<a href="http://localhost:8080/testflashcards">test flashcards</a>
+<br>
+<a href="http://localhost:8080/testquizzes">test quizzes</a>
+<br>
+<a href="http://localhost:8080/studysets">show sets</a>
 </body>
 </html>

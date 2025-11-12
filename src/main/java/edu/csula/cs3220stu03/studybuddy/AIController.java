@@ -4,7 +4,7 @@ import edu.csula.cs3220stu03.studybuddy.models.Flashcard;
 import edu.csula.cs3220stu03.studybuddy.models.Quiz;
 import edu.csula.cs3220stu03.studybuddy.models.StudySet;
 import edu.csula.cs3220stu03.studybuddy.storage.StudySetStore;
-import edu.csula .cs3220stu03.studybuddy.storage.Studystorage;
+import edu.csula.cs3220stu03.studybuddy.storage.Studystorage;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
@@ -68,7 +68,7 @@ public class AIController {
 
             aiReply = realFlashcardChat(prompt);
 
-            // ⬇️ Parse and store flashcards
+
             try {
                 String json = extractJsonArray(aiReply);
                 List<Flashcard> cards = MAPPER.readValue(json, new TypeReference<List<Flashcard>>() {
@@ -80,7 +80,7 @@ public class AIController {
             }
 
             aiReply = realQuizChat(prompt);
-            // ⬇️ Parse and store quizzes
+
             try {
                 String json = extractJsonArray(aiReply);
                 List<Quiz> quizzes = MAPPER.readValue(json, new TypeReference<List<Quiz>>() {
@@ -106,7 +106,7 @@ public class AIController {
     @GetMapping("/studysets")
     public String showStudySets(Model model) {
         model.addAttribute("studySets", studySetStore.getAll());
-        return "studysets"; // this will match studysets.jte
+        return "studysets";
     }
 
     @GetMapping("/testquizzes")
@@ -149,13 +149,11 @@ public class AIController {
                 return stripper.getText(doc);
             }
         } else {
-            // treat as plain text
             return new String(file.getBytes(), StandardCharsets.UTF_8);
         }
     }
 
-    // RealChat sends the full conversation history so the AI can
-    // generate context-aware responses.
+
     private String realQuizChat(String combinedUserPrompt) {
         var prompt = new Prompt(List.of(
                 new SystemMessage("""
@@ -214,6 +212,6 @@ public class AIController {
         if (start >= 0 && end >= start) {
             return text.substring(start, end + 1).trim();
         }
-        return text.trim(); // fallback
+        return text.trim();
     }
 }

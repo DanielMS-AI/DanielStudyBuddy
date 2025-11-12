@@ -1,6 +1,10 @@
-
-@import edu.csula.cs3220stu03.studybuddy.models.Quiz
-
+@param int setId
+@param int number
+@param int total
+@param String question
+@param java.util.List<String> options
+@param String answer
+@param int score
 
 <!doctype html>
 <html lang="en">
@@ -9,37 +13,27 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="/quiz.css">
+    <title>Document</title>
 </head>
 <body>
-<div class="nav-bar">
-    <a href="../All Notes/allnotes.html" class="btn left">View All Notes</a>
-    <a href="../Upload Page/index.html" class="btn middle">Home</a>
-    <a href="../Login Page/index.html" class="btn right">Log Out</a>
-</div>
+<h2>Question ${number} of ${total}</h2>
+<p>${question}</p>
 
-<div class="quiz-container">
-    <h1>Quiz on: Biology</h1>
+<form method="post">
+    @for(var opt : options)
+        <label>
+            <input type="radio" name="choice" value="${opt}" required> ${opt}
+        </label><br>
+    @endfor
+    <input type="hidden" name="correct" value="${answer}">
+    <input type="hidden" name="score" value="${score}">
 
-    <div class="bar">
-        <div class="middle">Question 1/10</div>
-        <a href="#" class="btn right">Quit</a>
-    </div>
-
-
-    <div  class="quiz-box">
-        <div id="question-text">The mitochondria is used to?</div>
-
-        <div class="options">
-
-            <button class="option-btn" onclick="selectOption(0)">control what enters and leaves the cell</button>
-            <button class="option-btn" onclick="selectOption(1)">produce energy in the form of ATP</button>
-            <button class="option-btn" onclick="selectOption(2)">store genetic information</button>
-            <button class="option-btn" onclick="selectOption(3)">synthesize proteins</button>
-        </div>
-    </div>
-</div>
-
+    @if(number == total)
+        <button type="submit">Finish</button>
+    @else
+        <button type="submit">Next</button>
+    @endif
+</form>
 </body>
+
 </html>

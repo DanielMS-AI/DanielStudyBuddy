@@ -1,8 +1,10 @@
 package edu.csula.cs3220stu03.studybuddy;
+
 import edu.csula.cs3220stu03.studybuddy.models.Flashcard;
 import edu.csula.cs3220stu03.studybuddy.models.Quiz;
+import edu.csula.cs3220stu03.studybuddy.models.StudySet;
+import edu.csula.cs3220stu03.studybuddy.storage.StudySetStore;
 import edu.csula .cs3220stu03.studybuddy.storage.Studystorage;
-
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
@@ -32,14 +34,17 @@ public class AIController {
 
     private Studystorage studystorage;
 
+    private StudySetStore studySetStore;
+
     private final ChatClient chatClient;
 
     private static final ObjectMapper MAPPER = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    public AIController(ChatClient.Builder chatClientBuilder, Studystorage studystorage) {
+    public AIController(ChatClient.Builder chatClientBuilder, Studystorage studystorage, StudySetStore studySetStore) {
         this.chatClient = chatClientBuilder.build();
         this.studystorage = studystorage;
+        this.studySetStore = studySetStore;
     }
 
     @GetMapping("/")
@@ -87,6 +92,7 @@ public class AIController {
                 System.out.println("Quiz parse error: " + e.getMessage());
             }
 
+            StudySet set = studySetStore.add(file.getOriginalFilename(), studystorage.getFlashcards(), studystorage.getQuizzes());
 
             String shownUserMsg = message != null && !message.isBlank()
                     ? message
@@ -95,6 +101,12 @@ public class AIController {
 
             return "success";
         }
+    }
+
+    @GetMapping("/studysets")
+    public String showStudySets(Model model) {
+        model.addAttribute("studySets", studySetStore.getAll());
+        return "studysets"; // this will match studysets.jte
     }
 
     @GetMapping("/testquizzes")

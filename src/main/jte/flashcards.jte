@@ -14,19 +14,28 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/flashcards.css">
 </head>
 <body>
-<h1>Flashcards — ${fileTitle}</h1>
+<div class="button-bar">
+    <a href="/studysets" class="btn left">View All Notes</a>
+    <a href="/" class="btn middle">Upload</a>
+    <a href="#" class="btn right">Log Out</a>
+</div>
+
+<div class="full-flashcard-box">
+<h2>Flashcards — ${fileTitle}</h2>
+    <div class="flashcard-box">
 Flashcard <div id="counter"></div> of ${total}
+<div id="card-text" style="font-size: 1em; margin: 20px 0;"></div>
+</div>
+</div>
 
-
-
-<div id="card-text" style="font-size: 1.5em; margin: 20px 0;"></div>
-
-<button onclick="prevCard()">Previous</button>
+<div class="arrow-container">
+<button class="arrow left" onclick="prevCard()">&#8592;</button>
 <button onclick="flipCard()">Flip</button>
-<button onclick="nextCard()">Next</button>
-
+<button class="arrow right" onclick="nextCard()">&#8594;</button>
+</div>
 
 
 <script>

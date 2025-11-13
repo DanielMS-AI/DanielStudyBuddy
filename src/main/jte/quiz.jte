@@ -14,11 +14,27 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/quiz.css">
 </head>
 <body>
-<h2> ${fileTitle}</h2>
-<h2>Question ${number} of ${total}</h2>
-<p>${question}</p>
+<div class="nav-bar">
+    <a href="/studysets" class="btn left">View All Notes</a>
+    <a href="/" class="btn middle">Upload</a>
+    <a href="#" class="btn right">Log Out</a>
+</div>
+
+<div class="quiz-container">
+
+<h1>Quiz on: ${fileTitle}</h1>
+
+    <div class="bar">
+        <div class="middle">Question ${number} of ${total}</div>
+    </div>
+
+    <div class="quiz-box">
+    <div id="question-text">${question}</div>
+
+
 
 <form method="post">
     @for(var opt : options)
@@ -26,6 +42,7 @@
             <input type="radio" name="choice" value="${opt}" required> ${opt}
         </label><br>
     @endfor
+
     <input type="hidden" name="correct" value="${answer}">
     <input type="hidden" name="score" value="${score}">
 
@@ -34,7 +51,11 @@
     @else
         <button type="submit">Next</button>
     @endif
+
 </form>
+
+    </div>
+</div>
 </body>
 
 </html>

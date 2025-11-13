@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="nav-bar">
-    <a href="../Upload Page/index.html" class="btn left">Home</a>
+    <a href="../Upload Page/index.html" class="btn left">Upload Notes</a>
     <a href="../Login Page/index.html" class="btn right">Log Out</a>
 </div>
 

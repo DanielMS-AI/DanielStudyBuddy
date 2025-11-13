@@ -12,9 +12,9 @@
 </head>
 <body>
 <div class="button-bar">
-    <a href="../All Notes/allnotes.html" class="btn left">View All Notes</a>
+    <a href="/allnotes" class="btn left">View All Notes</a>
 
-    <a href="../Log in Page/index.html" class="btn right">Log Out</a>
+    <a href="#" class="btn right">Log Out</a>
 </div>
 
 <div class="full-upload-box">

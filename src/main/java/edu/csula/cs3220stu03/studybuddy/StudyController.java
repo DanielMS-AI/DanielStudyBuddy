@@ -1,6 +1,7 @@
 package edu.csula.cs3220stu03.studybuddy;
 
 
+import edu.csula.cs3220stu03.studybuddy.models.Flashcard;
 import edu.csula.cs3220stu03.studybuddy.models.Quiz;
 import edu.csula.cs3220stu03.studybuddy.models.StudySet;
 import edu.csula.cs3220stu03.studybuddy.storage.StudySetStore;
@@ -30,10 +31,10 @@ public class StudyController {
             Model model
     ) {
         StudySet set = studySetStore.findById(studySetId);
-        if (set == null) return "redirect:/studysets";
+        if (set == null) return "redirect:/allnotes";
 
         List<Quiz> questions = set.getQuizzes();
-        if (number < 1 || number > questions.size()) return "redirect:/studysets";
+        if (number < 1 || number > questions.size()) return "redirect:/allnotes";
 
         Quiz q = questions.get(number - 1);
 
@@ -41,6 +42,7 @@ public class StudyController {
         if (!options.contains(q.getAnswer())) options.add(q.getAnswer());
         Collections.shuffle(options);
 
+        model.addAttribute("fileTitle", set.getFilename());
         model.addAttribute("setId", studySetId);
         model.addAttribute("number", number);
         model.addAttribute("total", questions.size());
@@ -61,7 +63,7 @@ public class StudyController {
         if (choice.equals(correct)) score++;
 
         StudySet set = studySetStore.findById(studySetId);
-        if (set == null) return "redirect:/studysets";
+        if (set == null) return "redirect:/allnotes";
 
         if (number < set.getQuizzes().size()) {
             return "redirect:/quiz/" + studySetId + "/" + (number + 1) + "?score=" + score;
@@ -73,12 +75,34 @@ public class StudyController {
     @GetMapping("/quiz/results/{studySetId}")
     public String results(@PathVariable int studySetId, @RequestParam int score, Model model) {
         StudySet set = studySetStore.findById(studySetId);
-        if (set == null) return "redirect:/studysets";
+        if (set == null) return "redirect:/allnotes";
         model.addAttribute("score", score);
         model.addAttribute("total", set.getQuizzes().size());
         model.addAttribute("studySetId", studySetId);
+        model.addAttribute("fileTitle", set.getFilename());
+        model.addAttribute("allquizzes", set.getQuizzes());
+
         return "quiz_results";
     }
 
+
+
+    @GetMapping("/flashcards/{studySetId}/{number}")
+    public String showFlashcard(
+            @PathVariable int studySetId,
+            Model model
+    ) {
+        StudySet set = studySetStore.findById(studySetId);
+        if (set == null) return "redirect:/allnotes";
+
+        List<Flashcard> flashcards = set.getFlashcards();
+
+        model.addAttribute("fileTitle", set.getFilename());
+        model.addAttribute("setId", studySetId);
+        model.addAttribute("total",set.getFlashcards().size());
+        model.addAttribute("flashcards", flashcards);
+
+        return "flashcards";
+    }
 
 }

@@ -55,7 +55,9 @@ public class AIController {
     @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String chat(
             @RequestParam(required = false) String message,
-            @RequestParam(required = false, name = "file") MultipartFile file
+            @RequestParam(required = false, name = "file") MultipartFile file,
+            Model model
+
     ) throws IOException {
 
         if  (file.isEmpty()) {
@@ -98,15 +100,15 @@ public class AIController {
                     ? message
                     : (file != null && !file.isEmpty() ? "[Uploaded: " + file.getOriginalFilename() + "]" : "(empty)");
 
-
-            return "success";
+            model.addAttribute("studySets", studySetStore.getAll());
+            return "allnotes";
         }
     }
 
-    @GetMapping("/studysets")
+    @GetMapping("/allnotes")
     public String showStudySets(Model model) {
         model.addAttribute("studySets", studySetStore.getAll());
-        return "studysets";
+        return "allnotes";
     }
 
     @GetMapping("/testquizzes")

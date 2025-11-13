@@ -31,7 +31,8 @@
             <tr>
                 <td>${set.getId()}</td>
                 <td>${set.getFilename()}</td>
-                <td>    @for(var card : set.getFlashcards())
+                <td><a href="/flashcards/${set.getId()}/1">Start flashcards</a>
+                    @for(var card : set.getFlashcards())
                         <li><strong>Q:</strong> ${card.getQuestion()} <br> <strong>A:</strong> ${card.getAnswer()}</li>
                     @endfor
                 </td>

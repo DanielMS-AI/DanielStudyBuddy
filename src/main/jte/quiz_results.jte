@@ -1,6 +1,13 @@
+@import edu.csula.cs3220stu03.studybuddy.models.Quiz
+@import java.util.List
+
 @param int studySetId
 @param int score
 @param int total
+@param String fileTitle
+@param List<Quiz> allquizzes
+
+
 
 <!doctype html>
 <html lang="en">
@@ -13,8 +20,18 @@
 </head>
 <body>
 <div class="box">
+    <h2>${fileTitle}</h2>
     <h1>Quiz Complete!</h1>
     <div class="score">You scored ${score} / ${total}</div>
+
+
+    @for (var quiz : allquizzes)
+        <h4>Question ${quiz.getquizID()}</h4>
+
+        <h5>Question text: ${quiz.getQuestion()}</h5>
+        <div>Answer :${quiz.getAnswer()}</div>
+        <br>
+    @endfor
 
 </div>
 </body>

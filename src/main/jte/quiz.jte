@@ -5,7 +5,7 @@
 @param java.util.List<String> options
 @param String answer
 @param int score
-
+@param String fileTitle
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,6 +16,7 @@
     <title>Document</title>
 </head>
 <body>
+<h2> ${fileTitle}</h2>
 <h2>Question ${number} of ${total}</h2>
 <p>${question}</p>
 

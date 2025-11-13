@@ -31,10 +31,10 @@ public class StudyController {
             Model model
     ) {
         StudySet set = studySetStore.findById(studySetId);
-        if (set == null) return "redirect:/studysets";
+        if (set == null) return "redirect:/allnotes";
 
         List<Quiz> questions = set.getQuizzes();
-        if (number < 1 || number > questions.size()) return "redirect:/studysets";
+        if (number < 1 || number > questions.size()) return "redirect:/allnotes";
 
         Quiz q = questions.get(number - 1);
 
@@ -63,7 +63,7 @@ public class StudyController {
         if (choice.equals(correct)) score++;
 
         StudySet set = studySetStore.findById(studySetId);
-        if (set == null) return "redirect:/studysets";
+        if (set == null) return "redirect:/allnotes";
 
         if (number < set.getQuizzes().size()) {
             return "redirect:/quiz/" + studySetId + "/" + (number + 1) + "?score=" + score;
@@ -75,7 +75,7 @@ public class StudyController {
     @GetMapping("/quiz/results/{studySetId}")
     public String results(@PathVariable int studySetId, @RequestParam int score, Model model) {
         StudySet set = studySetStore.findById(studySetId);
-        if (set == null) return "redirect:/studysets";
+        if (set == null) return "redirect:/allnotes";
         model.addAttribute("score", score);
         model.addAttribute("total", set.getQuizzes().size());
         model.addAttribute("studySetId", studySetId);
@@ -93,7 +93,7 @@ public class StudyController {
             Model model
     ) {
         StudySet set = studySetStore.findById(studySetId);
-        if (set == null) return "redirect:/studysets";
+        if (set == null) return "redirect:/allnotes";
 
         List<Flashcard> flashcards = set.getFlashcards();
 

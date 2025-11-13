@@ -101,14 +101,14 @@ public class AIController {
                     : (file != null && !file.isEmpty() ? "[Uploaded: " + file.getOriginalFilename() + "]" : "(empty)");
 
             model.addAttribute("studySets", studySetStore.getAll());
-            return "studysets";
+            return "allnotes";
         }
     }
 
-    @GetMapping("/studysets")
+    @GetMapping("/allnotes")
     public String showStudySets(Model model) {
         model.addAttribute("studySets", studySetStore.getAll());
-        return "studysets";
+        return "allnotes";
     }
 
     @GetMapping("/testquizzes")

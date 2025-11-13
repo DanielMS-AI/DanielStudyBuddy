@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="button-bar">
-    <a href="/studysets" class="btn left">View All Notes</a>
+    <a href="/allnotes" class="btn left">View All Notes</a>
 
     <a href="#" class="btn right">Log Out</a>
 </div>

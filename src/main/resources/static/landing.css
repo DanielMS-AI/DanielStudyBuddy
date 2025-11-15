@@ -1,5 +1,5 @@
 html {
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 * {
@@ -34,9 +34,9 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 840px;              
-  margin: 20px auto 40px;       
-  border: 2px solid #106b41; 
+  width: 840px;
+  margin: 20px auto 40px;
+  border: 2px solid #106b41;
   border-radius: 8px;
   padding: 10px 20px;
   background-color: #fff;
@@ -51,7 +51,7 @@ body::before {
   cursor: pointer;
   padding: 0;
   user-select: none;
-  text-decoration: none;  
+  text-decoration: none;
   flex: 1;
   text-align: center;
 }
@@ -84,8 +84,8 @@ body::before {
 
 .start{
   display: flex;
-  justify-content: center;    
-  align-items: flex-start;  
+  justify-content: center;
+  align-items: flex-start;
   margin: 30px auto;
   padding: 14px 28px;
   font-size: 1.2rem;
@@ -99,21 +99,21 @@ body::before {
 
 .descriptions {
   display: flex;
-  flex-direction: row;       
-  gap: 20px;                
-  justify-content: center;    
-  align-items: flex-start;   
-  margin-top: 40px;     
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
   ;
 }
 
 .description-box {
-  max-width: 350px;  
+  max-width: 350px;
   background: #f9f9f9;
   border: 1.5px solid #aaa;
   border-radius: 8px;
   padding: 14px 16px;
-  min-height: 70px; 
+  min-height: 70px;
   text-align: center;
   font-size: 1rem;
   font-family: inherit;
@@ -124,20 +124,20 @@ body::before {
 
 .howto{
     display: flex;
-  flex-direction: column;       
-  gap: 20px;                
-  justify-content: center;    
-  align-items: center;   
-  margin-top: 100px;     
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
   margin-bottom: 100px;
 }
 .howtobox {
-  max-width: 700px;  
+  max-width: 700px;
   background: #f9f9f9;
   border: 1.5px solid #aaa;
   border-radius: 8px;
   padding: 14px 16px;
-  min-height: 70px; 
+  min-height: 70px;
   text-align: center;
   font-size: 1rem;
   font-family: inherit;

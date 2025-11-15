@@ -20,13 +20,14 @@
 <div class="button-bar">
     <a href="/allnotes" class="btn left">View All Notes</a>
     <a href="/" class="btn middle">Upload</a>
-    <a href="#" class="btn right">Log Out</a>
+    <a href="/logout" class="btn right">Log Out</a>
 </div>
 
 <div class="full-flashcard-box">
 <h2>Flashcards — ${fileTitle}</h2>
+    <h1>Flashcard <span id="counter"></span> of ${total}</h1>
+
     <div class="flashcard-box">
-Flashcard <div id="counter"></div> of ${total}
 <div id="card-text" style="font-size: 1em; margin: 20px 0;"></div>
 </div>
 </div>

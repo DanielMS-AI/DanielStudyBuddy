@@ -1,16 +1,18 @@
 package edu.csula.cs3220stu03.studybuddy;
 
-
 import edu.csula.cs3220stu03.studybuddy.models.Flashcard;
 import edu.csula.cs3220stu03.studybuddy.models.Quiz;
 import edu.csula.cs3220stu03.studybuddy.models.StudySet;
 import edu.csula.cs3220stu03.studybuddy.storage.StudySetStore;
+import edu.csula.cs3220stu03.studybuddy.storage.UserSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,10 +21,13 @@ import java.util.List;
 public class StudyController {
 
     private final StudySetStore studySetStore;
+    private final UserSession userSession;
 
-    public StudyController(StudySetStore studySetStore) {
+    public StudyController(StudySetStore studySetStore, UserSession userSession) {
         this.studySetStore = studySetStore;
+        this.userSession = userSession;
     }
+
     @GetMapping("/quiz/{studySetId}/{number}")
     public String showQuestion(
             @PathVariable int studySetId,
@@ -30,7 +35,8 @@ public class StudyController {
             @RequestParam(defaultValue = "0") int score,
             Model model
     ) {
-        StudySet set = studySetStore.findById(studySetId);
+        int userId = userSession.getUserId();
+        StudySet set = studySetStore.findById(userId, studySetId);
         if (set == null) return "redirect:/allnotes";
 
         List<Quiz> questions = set.getQuizzes();
@@ -61,8 +67,8 @@ public class StudyController {
             @RequestParam("score") int score
     ) {
         if (choice.equals(correct)) score++;
-
-        StudySet set = studySetStore.findById(studySetId);
+        int userId = userSession.getUserId();
+        StudySet set = studySetStore.findById(userId, studySetId);
         if (set == null) return "redirect:/allnotes";
 
         if (number < set.getQuizzes().size()) {
@@ -74,7 +80,8 @@ public class StudyController {
 
     @GetMapping("/quiz/results/{studySetId}")
     public String results(@PathVariable int studySetId, @RequestParam int score, Model model) {
-        StudySet set = studySetStore.findById(studySetId);
+        int userId = userSession.getUserId();
+        StudySet set = studySetStore.findById(userId, studySetId);
         if (set == null) return "redirect:/allnotes";
         model.addAttribute("score", score);
         model.addAttribute("total", set.getQuizzes().size());
@@ -84,25 +91,30 @@ public class StudyController {
 
         return "quiz_results";
     }
+    @GetMapping("/flashcards/{studySetId}")
+    public String showFlashcard(@PathVariable int studySetId, Model model) {
+        if (!userSession.isLoggedIn()) return "redirect:/login";
 
-
-
-    @GetMapping("/flashcards/{studySetId}/{number}")
-    public String showFlashcard(
-            @PathVariable int studySetId,
-            Model model
-    ) {
-        StudySet set = studySetStore.findById(studySetId);
+        int userId = userSession.getUserId();
+        StudySet set = studySetStore.findById(userId, studySetId);
         if (set == null) return "redirect:/allnotes";
 
         List<Flashcard> flashcards = set.getFlashcards();
-
         model.addAttribute("fileTitle", set.getFilename());
         model.addAttribute("setId", studySetId);
-        model.addAttribute("total",set.getFlashcards().size());
+        model.addAttribute("total", flashcards.size());
         model.addAttribute("flashcards", flashcards);
 
         return "flashcards";
     }
 
+    @GetMapping("/delete/{studySetId}")
+    public String deleteStudySet(@PathVariable int studySetId) {
+        if (!userSession.isLoggedIn()) return "redirect:/login";
+
+        int userId = userSession.getUserId();
+        studySetStore.delete(userId, studySetId);
+
+        return "redirect:/allnotes";
+    }
 }

@@ -17,7 +17,7 @@
     <h2>StudyBuddy</h2>
 </div>
 
-<form action="../Login Page/index.html">
+<form action="/login">
     <button class="start"><div id="bold">Start Learning</div></button>
 </form>
 <div class="descriptions">
@@ -34,17 +34,17 @@
 <div class="howto">
     <div class="howtobox">
         <div id="bold">1.Upload a file from class</div>
-        <img src="../images/upload.png" alt="Upload" class="howtoimg" />
+        <img src="/images/upload.png" alt="Upload" class="howtoimg" />
     </div>
 
     <div class="howtobox">
         <div id="bold">2.Practice with flashcards</div>
-        <img src="../images/flashcards.png" alt="Flashcards" class="howtoimg" />
+        <img src="/images/flashcards.png" alt="Flashcards" class="howtoimg" />
     </div>
 
     <div class="howtobox">
         <div id="bold">3.Take a quiz to test your knowledge</div>
-        <img src="../images/quiz.png" alt="Quiz" class="howtoimg" />
+        <img src="/images/quiz.png" alt="Quiz" class="howtoimg" />
     </div>
 </div>
 

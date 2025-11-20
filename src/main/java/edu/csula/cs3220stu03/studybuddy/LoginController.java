@@ -40,7 +40,7 @@ public class LoginController {
                     return "login";
                 }
             }
-            users.add(new User(nextId++, password, username));
+            users.add(new User(nextId++, username, password ));
             model.addAttribute("error", "Account created! Please login.");
             return "login";
         }

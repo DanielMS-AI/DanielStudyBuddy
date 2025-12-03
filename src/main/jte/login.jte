@@ -8,13 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login</title>
     <link rel="stylesheet" href="/login.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
 </head>
-<body>
-
-<div class="button-bar">
-    <a href="/landing" class="btn right">Back</a>
-</div>
+<body class="container">
+<nav class="navbar navbar-expand-lg mt-3 bg-body-tertiary nav-color">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="bi bi-book"></i>StudyBuddy</a>
+            <ul class="navbar-nav ms-auto mb-1 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/landing">Back</a>
+                </li>
+            </ul>
+    </div>
+</nav>
 
 <main class="main-area d-flex justify-content-center align-items-start">
     <div class="login-box p-4 rounded shadow">
@@ -39,7 +54,7 @@
             </div>
 
             <div class="d-flex justify-content-between">
-                <button type="submit" name="action" value="signup" class="btn btn-primary">Sign Up</button>
+                <button type="submit" name="action" value="signup" class="btn btn-success">Sign Up</button>
                 <button type="submit" name="action" value="login" class="btn btn-secondary">Log In</button>
             </div>
         </form>

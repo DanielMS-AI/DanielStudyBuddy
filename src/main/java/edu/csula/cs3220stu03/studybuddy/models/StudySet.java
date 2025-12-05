@@ -1,35 +1,67 @@
 package edu.csula.cs3220stu03.studybuddy.models;
 
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
+import jakarta.persistence.*;
 import java.util.List;
 
-@Component
+@Entity
+@Table(name = "study_sets")
 public class StudySet {
-    private Integer id;
-    private String filename;
-    private List<Flashcard> flashcards = new ArrayList<>();
-    private List<Quiz> quizzes = new ArrayList<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
+    private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "studySet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Quiz> quizzes;
+
+    @OneToMany(mappedBy = "studySet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Flashcard> flashcards;
 
     public StudySet() {}
 
-    public StudySet(Integer id, String filename, List<Flashcard> flashcards, List<Quiz> quizzes) {
-        this.id = id;
-        this.filename = filename;
-        if (flashcards != null) this.flashcards = flashcards;
-        if (quizzes != null) this.quizzes = quizzes;
+    public StudySet(String title, User user, List<Quiz> quizzes, List<Flashcard> flashcards) {
+        this.title = title;
+        this.user = user;
+        this.quizzes = quizzes;
+        this.flashcards = flashcards;
     }
 
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getFilename() { return filename; }
-    public void setFilename(String filename) { this.filename = filename; }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public List<Flashcard> getFlashcards() { return flashcards; }
-    public void setFlashcards(List<Flashcard> flashcards) { this.flashcards = flashcards; }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public List<Quiz> getQuizzes() { return quizzes; }
-    public void setQuizzes(List<Quiz> quizzes) { this.quizzes = quizzes; }
+    public List<Quiz> getQuizzes() {
+        return quizzes;
+    }
+    public void setQuizzes(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
+    }
+
+    public List<Flashcard> getFlashcards() {
+        return flashcards;
+    }
+    public void setFlashcards(List<Flashcard> flashcards) {
+        this.flashcards = flashcards;
+    }
 }

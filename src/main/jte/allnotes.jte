@@ -59,30 +59,29 @@
         <div class="notes-box container-center">
             @for (var set : studySets)
                 <nav class="navbar navbar-expand-lg mt-3 bg-body-tertiary nav-color">
-                    <div class="bar">
-                        <div class="title">${set.getFilename()}</div>
-                        <button
-                                class="navbar-toggler"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#set-menu-${set.getId()}"
-                                aria-controls="set-menu-${set.getId()}"
-                                aria-expanded="false"
-                                aria-label="Toggle navigation"
-                        >
+                    <div class="bar d-flex align-items-center justify-content-between py-1 px-2 border rounded mb-2">
+                        <span class="title fw-bold fs-5 text-truncate me-3 flex-grow-1">${set.getTitle()}</span>
+
+                        <button class="navbar-toggler p-1 me-1" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#set-menu-${set.getId()}" aria-controls="set-menu-${set.getId()}"
+                                aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
                         <div class="collapse navbar-collapse" id="set-menu-${set.getId()}">
-                            <ul class="navbar-nav me-auto mb-1 mb-lg-0 ">
-                                <li class="nav-item">
-                                    <button class="nav-link" type="button" onclick="location.href='/flashcards/${set.getId()}'"><i class="bi bi-card-text"></i> Flashcards </button>
+                            <ul class="navbar-nav ms-auto mb-0 d-flex flex-row">
+                                <li class="nav-item me-2">
+                                    <button class="nav-link p-1" type="button" onclick="location.href='/flashcards/${set.getId()}'">
+                                        <i class="bi bi-card-text"></i> Flashcards
+                                    </button>
+                                </li>
+                                <li class="nav-item me-2">
+                                    <button class="nav-link p-1" type="button" onclick="location.href='/quiz/${set.getId()}/1'">
+                                        <i class="bi bi-check2-square"></i> Quiz
+                                    </button>
                                 </li>
                                 <li class="nav-item">
-                                    <button class="nav-link" type="button" onclick="location.href='/quiz/${set.getId()}/1'"><i class="bi bi-check2-square"></i> Quiz </button>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="nav-link danger" type="button"
+                                    <button class="nav-link p-1 text-danger" type="button"
                                             onclick="if(confirm('Are you sure you want to delete this study set?')) location.href='/delete/${set.getId()}'">
                                         <i class="bi bi-trash"></i> Delete
                                     </button>

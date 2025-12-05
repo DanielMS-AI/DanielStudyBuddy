@@ -1,6 +1,5 @@
 package edu.csula.cs3220stu03.studybuddy.storage;
 
-import edu.csula.cs3220stu03.studybuddy.models.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -24,5 +23,4 @@ public class UserSession {
     public void logout() {
         userId = null;
     }
-
 }

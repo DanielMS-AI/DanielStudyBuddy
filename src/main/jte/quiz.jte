@@ -6,6 +6,7 @@
 @param String answer
 @param int score
 @param String fileTitle
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="/quiz.css">
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -61,40 +62,38 @@
 <h2 class="text-center">Quiz on: ${fileTitle}</h2>
 
 <div class="quiz-container">
-        <h4 class="text-center">Question ${number} of ${total}</h4>
+    <h4 class="text-center">Question ${number} of ${total}</h4>
 
     <div class="quiz-box">
-    <h3 class="mt-4 mb-3">${question}</h3>
+        <h3 class="mt-4 mb-3">${question}</h3>
 
-<form method="post">
-    @for(var opt : options)
-        <input type="radio"
-               class="btn-check"
-               name="choice"
-               id="choice-${opt}"
-               value="${opt}"
-               required>
+        <form method="post" action="/quiz/${setId}/${number}">
+            @for(var opt : options)
+                <input type="radio"
+                       class="btn-check"
+                       name="choice"
+                       id="choice-${opt}"
+                       value="${opt}"
+                       required>
+                <label class="btn btn-light mt-1 mb-1" for="choice-${opt}">
+                    ${opt}
+                </label><br>
+            @endfor
 
-        <label class="btn btn-light mt-1 mb-1" for="choice-${opt}">
-            ${opt}
-        </label><br>
-    @endfor
-    <input type="hidden" name="correct" value="${answer}">
-    <input type="hidden" name="score" value="${score}">
+            <input type="hidden" name="correct" value="${answer}">
+            <input type="hidden" name="score" value="${score}">
 
-    @if(number == total)
-        <button class="btn btn-success mt-3 mb-3" type="submit">Finish</button>
-    @else
-        <button class="btn btn-success mt-3 mb-3" type="submit">Next</button>
-    @endif
-
-</form>
-
+            @if(number == total)
+                <button class="btn btn-success mt-3 mb-3" type="submit">Finish</button>
+            @else
+                <button class="btn btn-success mt-3 mb-3" type="submit">Next</button>
+            @endif
+        </form>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

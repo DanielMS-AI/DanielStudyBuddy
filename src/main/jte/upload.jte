@@ -64,11 +64,12 @@
         <div class="text-center fw-lighter"> Disclaimer: pdf or txt only</div>
         <br>
         <div class="text-center">
-            <button id="submit-btn" type="submit" class="btn btn-success">
+            <button id="submit-btn" type="submit" class="btn btn-success btn-lg" style="padding: 1rem 2rem; font-size: 1.25rem;">
                 <span class="spinner-border spinner-grow-sm spinner-text-success d-none" id="loading-spinner" role="status" aria-hidden="true"></span>
                 <span id="submit-text">Submit</span>
             </button>
         </div>
+
 
     </form>
 

@@ -1,30 +1,27 @@
 package edu.csula.cs3220stu03.studybuddy;
 
 import edu.csula.cs3220stu03.studybuddy.models.User;
+import edu.csula.cs3220stu03.studybuddy.repositories.UserRepository;
 import edu.csula.cs3220stu03.studybuddy.storage.UserSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class LoginController {
 
-    private static final List<User> users = new ArrayList<>();
-    private static int nextId = 1;
-
     private final UserSession userSession;
+    private final UserRepository userRepository;
 
-    public LoginController(UserSession userSession) {
+    public LoginController(UserSession userSession, UserRepository userRepository) {
         this.userSession = userSession;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(required = false) String error, Model model) {
         model.addAttribute("error", error);
-        return "login"; // JTE template
+        return "login";
     }
 
     @PostMapping("/login")
@@ -34,26 +31,36 @@ public class LoginController {
                             Model model) {
 
         if ("signup".equals(action)) {
-            for (User u : users) {
-                if (u.getUsername().equalsIgnoreCase(username)) {
-                    model.addAttribute("error", "Username already taken.");
-                    return "login";
-                }
+            if (userRepository.findByUsername(username).isPresent()) {
+                model.addAttribute("error", "Username already taken.");
+                return "login";
             }
-            users.add(new User(nextId++, username, password ));
+
+            User newUser = new User(username, password);
+            userRepository.save(newUser);
+
             model.addAttribute("error", "Account created! Please login.");
             return "login";
         }
 
         if ("login".equals(action)) {
-            for (User u : users) {
-                if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
-                    userSession.setUserId(u.getId());
-                    return "redirect:/"; // now redirect works
-                }
+            var optionalUser = userRepository.findByUsername(username);
+
+            if (optionalUser.isEmpty()) {
+                model.addAttribute("error", "Invalid username or password.");
+                return "login";
             }
-            model.addAttribute("error", "Invalid username or password.");
-            return "login";
+
+            User user = optionalUser.get();
+
+            if (!user.getPassword().equals(password)) {
+                model.addAttribute("error", "Invalid username or password.");
+                return "login";
+            }
+
+            userSession.setUserId(user.getId());
+
+            return "redirect:/";
         }
 
         model.addAttribute("error", "Unknown action.");
